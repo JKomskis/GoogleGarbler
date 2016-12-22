@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 var request = require('request');
-var async = require('async');
 var languages=["en","es","de","zh-CN"];
 var translatedText="test";
 var inputText;
@@ -39,20 +37,14 @@ class App extends Component {
 class InputText extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {inputValue: 'hello world'};
+    this.state = {inputValue: ''};
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     inputText=this;
   }
 
   handleChange(event) {
     this.setState({inputValue: event.target.value});
-  }
-
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
   }
 
   render() {
@@ -70,17 +62,11 @@ class OutputText extends React.Component {
     this.state = {outputValue: ''};
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     outputText=this;
   }
 
   handleChange(event) {
     this.setState({outputValue: event.target.value});
-  }
-
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
   }
 
   render() {
