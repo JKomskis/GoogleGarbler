@@ -194,7 +194,7 @@ class LanguageRoute{
 }
 
 //main translate function, which calls the recursive translate helper function
-function translate(){
+function translateInit(){
   //set the output text to loading
   document.getElementById("outputText").classList.add("loading");
   
@@ -206,7 +206,8 @@ function translate(){
   }
 
   //get the input text
-  let sourceText : string = document.getElementById("inputText").textContent;
+  let input : HTMLTextAreaElement = <HTMLTextAreaElement>document.getElementById("inputText");
+  let sourceText : string = input.value;
 
   //split the text by periods and semicolons, each piece will be translated
   //individually for faster processing
@@ -233,27 +234,27 @@ function translateHelper(route: LanguageBox[],
   });
   
   //wait until all the pieces have been translated succesfully
+  let output : HTMLTextAreaElement = <HTMLTextAreaElement>document.getElementById("outputText");
   Promise.all(translatedText).then(values => {
     //console.log(values);
     //if this was the last translation step, clear the output text and set
     //it to the concatenation of all the translated pieces
     if(source === route.length-2){
-      document.getElementById("outputText").textContent = "";
+      output.value = "";
       values.forEach(value => {
-        document.getElementById("outputText").textContent += value + " ";
+        output.value += value + " ";
       });
       //set the output text to no longer loading and return
-      document.getElementById("outputText").classList.remove("loading");
+      output.classList.remove("loading");
       return;
     }
     
     //otherwise, use the translated text and go to the next step
     translateHelper(route, source+1, values);
   }, rejectReason => {
-    document.getElementById("outputText").textContent =
-      "Error, please try again...";
-      document.getElementById("outputText").classList.remove("loading");
-      return;
+    output.value = "Error, please try again...";
+    output.classList.remove("loading");
+    return;
   });
 }
 
@@ -302,15 +303,15 @@ function callTranslateAPI(sourceLang : string,
 var TranslationPath : LanguageRoute = new LanguageRoute();
 
 function init(){
-for(let i : number = 0; i < 5; ++i){
-  TranslationPath.addLanguageBox();
-}
-TranslationPath.route[1].selected = "es";
-TranslationPath.route[2].selected = "zh-CN";
-TranslationPath.route[3].selected = "ar";
-for(let i : number = 0; i < 5; ++i){
-  TranslationPath.rerender(i);
-}
+  for(let i : number = 0; i < 5; ++i){
+    TranslationPath.addLanguageBox();
+  }
+  TranslationPath.route[1].selected = "es";
+  TranslationPath.route[2].selected = "zh-CN";
+  TranslationPath.route[3].selected = "ar";
+  for(let i : number = 0; i < 5; ++i){
+    TranslationPath.rerender(i);
+  }
 }
 
 
