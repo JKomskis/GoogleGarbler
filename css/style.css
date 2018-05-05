@@ -5,6 +5,10 @@ p{
   margin-right: auto;
 }
 
+.form-input {
+  margin-bottom: 0.5rem;
+}
+
 .languageBtn{
   margin-left: 0.1em;
   margin-right: 0.1em;
