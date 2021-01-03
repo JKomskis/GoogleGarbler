@@ -1,0 +1,59 @@
+@import './button';
+
+.path-step {
+  @include card;
+
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  margin: 0 1rem;
+  padding-left: 0;
+  padding-right: 0;
+  width: 90%;
+  @include respond-to('large') {
+    margin: 1rem;
+    padding: 2rem;
+    width: fit-content;
+  }
+
+  &__button-bar {
+    @include button-bar;
+  
+    margin-top: 0.5rem;
+  }
+  
+  &__button {
+    @include button-bar__button;
+  
+    border-radius: 0;
+    // font-weight: $normal-font-weight;
+    height: auto;
+
+    &--first {
+      @include button-bar__button--first;
+    }
+    
+    &--last {
+      @include button-bar__button--last;
+    }
+  }
+  
+  &__right-arrow {
+    transform: rotate(90deg);
+    transition: 0.4s;
+  
+    @include respond-to('large') {
+      transform: rotate(0deg);
+    }
+  }
+  
+  &__left-arrow {
+    transform: rotate(-90deg);
+    transition: 0.4s;
+  
+    @include respond-to('large') {
+      transform: rotate(-180deg);
+    }
+  }
+}

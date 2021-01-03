@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- <link rel="preload" href="/web/css/fonts/lato/2.0/LatoLatin-Regular.supersubset.woff2" as="font" type="font/woff2" crossorigin=""> -->
+    <title>LanguageGarbler</title>
+    <meta property="og:title" content="LanguageGarbler">
+    <meta name="author" content="Joe Komskis">
+    <meta property="og:site_name" content="Joe Komskis">
+    <meta name="description" content="Joe Komskis's personal website">
+    <meta property="og:description" content="Joe Komskis's personal website">
+    <link rel="canonical" href="https://www.jkomskis.com">
+    <link rel="stylesheet" href="/assets/css/main.min.css" type="text/css">
+    <!-- Matomo -->
+    <script type="text/javascript">
+    var _paq = window._paq = window._paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="//analytics.jkomskis.com/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+    <!-- End Matomo Code -->
+</head>
+
+<body>
+    <main class="main">
+        <div class="header">
+            <div class="return-link">
+                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" class="svg-inline--fa fa-arrow-right fa-w-14 return-link__arrow" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path>
+                </svg>
+                <a href="https://www.jkomskis.com">JKomskis.com</a>
+            </div>
+            <a class="source-link" href="https://github.com/JKomskis/LanguageGarbler">Source Code</a>
+        </div>
+        <h1>Language Garbler</h1>
+        <p>Language Garbler uses language translation APIs to pass text through 
+        multiple languages at a time. Simply enter text in the "input text" box, 
+        adjust the translation path as desired, and click "Translate".
+        </p>
+        <h3><strong>Translation path:</strong></h3>
+        <language-path class="path"></language-path>
+    </main>
+    <script type="module" src="./assets/js/bundle.js"></script>
+</body>
+
+</html>

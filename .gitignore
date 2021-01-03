@@ -1,3 +1,8 @@
-#compiled and minified files
-build
-js
+# node modules
+node_modules
+
+# build folder
+_site
+
+# environment variables
+.env

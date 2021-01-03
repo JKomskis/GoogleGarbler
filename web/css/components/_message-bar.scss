@@ -1,0 +1,36 @@
+.message-bar {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin-left: 1rem;
+  min-width: 0;
+  padding: 0.5rem;
+
+  &--alert {
+    background-color: $alert-background-color;
+  }
+
+  &__message {
+    flex: 1;
+    font-size: $caption-font-size;
+    margin: 0 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__close-button {
+    background: none;
+    border: 0;
+    opacity: 1;
+    padding: 0;
+
+    @include respond-to('can-hover') {
+      opacity: 0.65;
+      
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}

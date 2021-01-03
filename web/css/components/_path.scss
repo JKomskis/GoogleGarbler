@@ -1,0 +1,114 @@
+.path {
+  display: flex;
+  flex-direction: column;
+
+  &__path-steps {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+  
+    @include respond-to('large') {
+      flex-direction: row;
+    }
+  }
+
+  &__arrow {
+    margin: 1rem;
+    transform: rotate(90deg);
+    transition: 0.4s;
+  
+    @include respond-to('large') {
+      transform: rotate(0deg);
+    }
+  }
+
+  &__add-button {
+    @include button;
+  
+    height: fit-content;
+    margin-left: 5vw;
+    margin-top: 1rem;
+    width: fit-content;
+  
+    @include respond-to('large') {
+      margin: 1rem;
+    }
+  }
+  
+  &__add-icon {
+    transform: rotate(45deg);
+  }
+  
+  &__io-area {
+    display: flex;
+    flex-direction: column;
+  
+    @include respond-to('large') {
+      flex-direction: row;
+    }
+  }
+
+  &__io-header {
+    align-items: baseline;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    @include respond-to('large') {
+      margin-right: 1rem;
+    }
+  }
+  
+  &__io-title-text {
+    margin: 0, 0, 0, 1rem;
+    white-space: nowrap;
+  }
+  
+  &__input-area,
+  &__output-area {
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    margin: 0.5rem 0;
+    width: 99%;
+  
+    @include respond-to('large') {
+      height: 75vh;
+      max-height: 25rem;
+      width: 48vw;
+    }
+  }
+  
+  &__text-area {
+    height: 50vh;
+    width: 99%;
+  
+    @include respond-to('large') {
+      height: 75vh;
+      margin: 0 1rem;
+      width: 45.5vw;
+    }
+  }
+  
+  &__translate-button {
+    @include button;
+  
+    margin: 1rem auto;
+    width: fit-content;
+
+    &--disabled {
+      background-color: $button-disabled-color;
+      border: 0;
+      color: $secondary-text-color;
+      cursor: default;
+    }
+  }
+  
+  &__spinner-icon {
+    animation: fa-spin 2s infinite linear;
+  }
+
+
+}

@@ -1,0 +1,7 @@
+.main {
+  margin: 0;
+
+  @include respond-to('large') {
+    margin: 0 1rem;
+  }
+}
