@@ -2,23 +2,29 @@ const { src, dest, series } = require('gulp');
 const rev = require('gulp-rev');
 const revRewrite = require('gulp-rev-rewrite');
 const { readFileSync } = require('fs');
-var revdel = require('gulp-rev-delete-original');
+const revdel = require('gulp-rev-delete-original');
+const del = require('del');
+const paths = require('./paths');
 
 function revision() {
-    return src('_site/assets/**/*.{css,js,woff,woff2,jpg,png,svg}')
+    return src(`${paths.assets.dest}/**/*.{css,js,woff,woff2,jpg,png,svg}`)
         .pipe(rev())
         .pipe(revdel())
-        .pipe(dest('_site/assets'))
+        .pipe(dest(paths.assets.dest))
         .pipe(rev.manifest())
-        .pipe(dest('_site/assets'));
+        .pipe(dest(paths.assets.dest));
 }
 
 function rewrite() {
-    const manifest = readFileSync('_site/assets/rev-manifest.json');
+    const manifest = readFileSync(`${paths.assets.dest}/rev-manifest.json`);
 
-    return src('_site/**/*.{html,css}')
+    return src(`${paths.dest}/**/*.{html,css}`)
         .pipe(revRewrite({ manifest }))
-        .pipe(dest('_site'));
+        .pipe(dest(paths.dest));
 }
 
-exports.rev = series(revision, rewrite);
+function removeManifest() {
+    return del([`${paths.assets.dest}/rev-manifest.json`], { force: true });
+}
+
+exports.rev = series(revision, rewrite, removeManifest);

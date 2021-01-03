@@ -10,7 +10,7 @@ env:
   AZURE_FUNCTIONAPP_NAME: languagegarbler # set this to your application's name
   AZURE_FUNCTIONAPP_PACKAGE_PATH: 'functions' # set this to the path to your web app project, defaults to the repository root
   NODE_VERSION: '14.x'
-  API_BASE_PATH: 'https://temp_value'
+  API_BASE_PATH: 'https://languagegarbler.jkomskis.com'
   FRONTEND_DEPLOY_PATH: 'languagegarbler'
 
 jobs:
@@ -50,6 +50,7 @@ jobs:
     needs: build
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
     runs-on: ubuntu-latest
+    environment: build_environment
 
     steps:
     - uses: actions/download-artifact@v2
@@ -76,7 +77,7 @@ jobs:
             }
             ".js" = @{
               CacheControl = $staticAssetCacheControl
-              ContentType = "application/js"
+              ContentType = "application/javascript"
             }
             ".woff" = @{
               CacheControl = $staticAssetCacheControl
@@ -112,9 +113,9 @@ jobs:
               $fileProperties = $properties[$_.extension]
               $relativePath = $_ | Resolve-Path -Relative
               if($fileProperties) {
-                Set-AzStorageBlobContent -File $_.fullName -Blob $relativePath -Container 'staging' -properties $fileProperties -Force
+                Set-AzStorageBlobContent -File $_.fullName -Blob $relativePath -Container '$web' -properties $fileProperties -Force
               } else {
-                Set-AzStorageBlobContent -File $_.fullName -Blob $relativePath -Container 'staging' -Force
+                Set-AzStorageBlobContent -File $_.fullName -Blob $relativePath -Container '$web' -Force
               }
             }
 
@@ -122,6 +123,7 @@ jobs:
       needs: build
       if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
       runs-on: ubuntu-latest
+      environment: build_environment
 
       steps:
       - uses: actions/checkout@master
