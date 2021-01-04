@@ -8,9 +8,9 @@ function copyHtml() {
 }
 
 function minifyHtml() {
-    return src('_site/**/*.html')
+    return src(`${paths.dest}/**/*.html`)
         .pipe(htmlmin({ collapseWhitespace: true }))
-        .pipe(dest('_site'));
+        .pipe(dest(paths.dest));
 }
 
 exports.copyHtml = copyHtml;

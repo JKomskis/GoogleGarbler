@@ -13,24 +13,26 @@ export class AzureTranslationService implements TranslationService {
             url: AzureTranslationService.translateUrl,
             headers: {
                 'Ocp-Apim-Subscription-Key': process.env.AZURE_SECRET_KEY,
-                'content-type': 'application/json; charset=UTF-8'
+                'content-type': 'application/json; charset=UTF-8',
             },
             params: {
                 'api-version': '3.0',
-                'from': sourceLanguage,
-                'to': destinationLanguage
+                from: sourceLanguage,
+                to: destinationLanguage,
             },
-            data: [{
-                "Text": text
-            }],
-            responseType: 'json'
+            data: [
+                {
+                    Text: text,
+                },
+            ],
+            responseType: 'json',
         };
         try {
-            let res = await axios(options);
+            const res = await axios(options);
             return res.data[0].translations[0].text;
         } catch (e) {
             console.log(e);
-            throw new TranslationError("Error translating text", 500);
+            throw new TranslationError('Error translating text', 500);
         }
     }
 }

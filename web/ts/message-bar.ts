@@ -4,7 +4,7 @@ import LightDomLitElement from './light-dom-lit-element';
 import { library, icon } from '@fortawesome/fontawesome-svg-core';
 import { faExclamationTriangle, faTimes } from '@fortawesome/free-solid-svg-icons';
 
-@customElement("message-bar")
+@customElement('message-bar')
 class MessageBar extends LightDomLitElement {
     @property({ type: String })
     messageType: string;
@@ -17,23 +17,29 @@ class MessageBar extends LightDomLitElement {
 
     constructor() {
         super();
-        this.messageType = "alert";
-        this.message = "";
+        this.messageType = 'alert';
+        this.message = '';
 
         library.add(faExclamationTriangle, faTimes);
 
-        this.alertHtml = icon({ prefix: 'fas', iconName: 'exclamation-triangle' }, {
-            transform: {
-                size: 16
+        this.alertHtml = icon(
+            { prefix: 'fas', iconName: 'exclamation-triangle' },
+            {
+                transform: {
+                    size: 16,
+                },
+                classes: ['message-bar__icon'],
             },
-            classes: ['message-bar__icon']
-        }).html[0];
-        this.closeHtml = icon({ prefix: 'fas', iconName: 'times' }, {
-            transform: {
-                size: 16
+        ).html[0];
+        this.closeHtml = icon(
+            { prefix: 'fas', iconName: 'times' },
+            {
+                transform: {
+                    size: 16,
+                },
+                classes: ['message-bar__close-icon'],
             },
-            classes: ['message-bar__close-icon']
-        }).html[0];
+        ).html[0];
     }
 
     renderIcon(): TemplateResult {
@@ -43,17 +49,20 @@ class MessageBar extends LightDomLitElement {
         return html``;
     }
 
-    render() {
+    render(): TemplateResult {
         return html`
-                ${this.renderIcon()}
-                <p class="message-bar__message">
-                    ${this.message}
-                </p>
-                <button class="message-bar__close-button" @click=${() => { this.dispatchEvent(new CustomEvent("message-bar-close")) }}>
-                    ${unsafeHTML(this.closeHtml)}
-                </button>
+            ${this.renderIcon()}
+            <p class="message-bar__message">${this.message}</p>
+            <button
+                class="message-bar__close-button"
+                @click=${() => {
+                    this.dispatchEvent(new CustomEvent('message-bar-close'));
+                }}
+            >
+                ${unsafeHTML(this.closeHtml)}
+            </button>
         `;
     }
 }
 
-export default MessageBar
+export default MessageBar;

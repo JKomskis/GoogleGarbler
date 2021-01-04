@@ -10,7 +10,7 @@ module.exports = {
         dest: './_site/assets/css'
     },
     ts: {
-        src: './web/ts/main.ts',
+        src: './web/ts/**/*.ts',
         dest: './_site/assets/js'
     },
     fonts: {

@@ -1,9 +1,9 @@
-import { LitElement } from "lit-element";
+import { LitElement } from 'lit-element';
 
 class LightDomLitElement extends LitElement {
-    createRenderRoot() {
+    createRenderRoot(): this {
         return this;
     }
 }
 
-export default LightDomLitElement
+export default LightDomLitElement;

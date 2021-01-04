@@ -15,7 +15,7 @@ exports.clean = clean;
 exports.lint = parallel(
     lintCss,
     lintTs
-)
+);
 
 exports.build = series(
     clean,

@@ -13,11 +13,11 @@ const paths = require('./paths');
 
 function lintCss() {
     return src(paths.css.src)
-    .pipe(gulpStylelint({
-        reporters: [
-            { formatter: 'string', console: true }
-        ]
-    }))
+        .pipe(gulpStylelint({
+            reporters: [
+                { formatter: 'string', console: true }
+            ]
+        }))
 }
 
 function compileCss() {
@@ -45,4 +45,4 @@ function minifyCss() {
 }
 
 exports.css = series(lintCss, compileCss, minifyCss);
-exports.lintCss = lintCss
+exports.lintCss = lintCss;
